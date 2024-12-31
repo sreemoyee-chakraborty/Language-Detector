@@ -40,7 +40,7 @@ const Home = () => {
 
       if (!languageMap[langCode]) {
         setError(
-          'Detected language is not supported. Supported languages are: Hindi, English, French, Spanish, Chinese, Arabic, German, Russian, Japanese, and Italian.'
+          'Detected language is not supported.'
         );
         setDetectedLanguage(null);
         return;
@@ -54,51 +54,35 @@ const Home = () => {
   };
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', maxWidth: '600px', margin: '0 auto' }}>
-      <h1 style={{ textAlign: 'center' }}>Language Detector</h1>
-      <textarea
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-        placeholder="Type your content here..."
-        rows={5}
-        style={{
-          marginBottom: '10px',
-          display: 'block',
-          width: '100%',
-          padding: '10px',
-          fontSize: '16px',
-          borderRadius: '5px',
-          border: '1px solid #ccc',
-          boxSizing: 'border-box',
-        }}
-      />
-      <button
-        onClick={detectLanguage}
-        style={{
-          padding: '10px 20px',
-          fontSize: '16px',
-          borderRadius: '5px',
-          border: 'none',
-          backgroundColor: '#007BFF',
-          color: '#fff',
-          cursor: 'pointer',
-          width: '100%',
-        }}
-      >
-        Detect Language
-      </button>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4">
+      <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-4">Language Detector</h1>
+        <textarea
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+          placeholder="Type your content here..."
+          rows={5}
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+        <button
+          onClick={detectLanguage}
+          className="w-full mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
+        >
+          Detect Language
+        </button>
 
-      {error && (
-        <div style={{ marginTop: '20px', color: 'red', textAlign: 'center' }}>
-          <strong>Error:</strong> {error}
-        </div>
-      )}
+        {error && (
+          <div className="mt-4 p-3 bg-red-100 text-red-600 rounded-lg text-center">
+            <strong>Error:</strong> {error}
+          </div>
+        )}
 
-      {detectedLanguage && !error && (
-        <div style={{ marginTop: '20px', color: 'green', textAlign: 'center' }}>
-          <strong>Detected Language:</strong> {detectedLanguage}
-        </div>
-      )}
+        {detectedLanguage && !error && (
+          <div className="mt-4 p-3 bg-green-100 text-green-600 rounded-lg text-center">
+            <strong>Detected Language:</strong> {detectedLanguage}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
